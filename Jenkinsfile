@@ -10,24 +10,23 @@ pipeline {
         }
 
         stage('Build and Test') {
-    steps {
-        script {
-            sh 'chmod +x ./gradlew'
-            sh './gradlew build'
+            steps {
+                script {
+                    sh 'chmod +x ./gradlew'
+                    sh './gradlew build'
+                }
+            }
         }
-    }
-}
-
 
         stage('Deploy to Cloud Foundry') {
-    steps {
-        script {
-            // Use Cloud Foundry CLI to deploy
-            sh 'cf push -f manifest.yml'
+            steps {
+                script {
+                    // Use Cloud Foundry CLI to deploy
+                    sh 'cf push -f manifest.yml'
+                }
+            }
         }
     }
-}
-
 
     post {
         success {
